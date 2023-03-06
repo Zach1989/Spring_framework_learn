@@ -272,6 +272,7 @@ class ConfigurationClassParser {
 		}
 
 		// Process any @PropertySource annotations
+		//如果配置类上加了@propertySource注解，那么就解析加载@properties文件,并将属性添加到sring上下文中
 		for (AnnotationAttributes propertySource : AnnotationConfigUtils.attributesForRepeatable(
 				sourceClass.getMetadata(), PropertySources.class,
 				org.springframework.context.annotation.PropertySource.class)) {
