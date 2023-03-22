@@ -543,6 +543,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	@Override
 	public void refresh() throws BeansException, IllegalStateException {
+		//同步监视器，避免refresh()和close()方法同时被调用
+		//使用对象锁尔不是方法锁可以减少同步范围
 		synchronized (this.startupShutdownMonitor) {
 			StartupStep contextRefresh = this.applicationStartup.start("spring.context.refresh");
 			/**
